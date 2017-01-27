@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_alarm_edit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.gunjun.android.alarm_app.AlarmEditActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/edit_memo"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/divide_picker"
+            android:layout_margin="2dp" />
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/hour_picker"
+            android:layout_margin="2dp"/>
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/minute_picker"
+            android:layout_margin="2dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="요일 반복"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/week_txt"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ToggleButton
+            android:id="@+id/sunday"
+            android:layout_width="@dimen/week_button_size"
+            android:layout_height="@dimen/week_button_size"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:textColor="@drawable/week_btn_toggle"
+            android:textOn="일"
+            android:textOff="일"/>
+        <ToggleButton
+            android:id="@+id/monday"
+            android:layout_width="@dimen/week_button_size"
+            android:layout_height="@dimen/week_button_size"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:textColor="@drawable/week_btn_toggle"
+            android:textOn="월"
+            android:textOff="월"/>
+        <ToggleButton
+            android:id="@+id/tuesday"
+            android:layout_width="@dimen/week_button_size"
+            android:layout_height="@dimen/week_button_size"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:textColor="@drawable/week_btn_toggle"
+            android:textOn="화"
+            android:textOff="화"/>
+        <ToggleButton
+            android:id="@+id/wednesday"
+            android:layout_width="@dimen/week_button_size"
+            android:layout_height="@dimen/week_button_size"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:textColor="@drawable/week_btn_toggle"
+            android:textOn="수"
+            android:textOff="수"/>
+        <ToggleButton
+            android:id="@+id/thursday"
+            android:layout_width="@dimen/week_button_size"
+            android:layout_height="@dimen/week_button_size"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:textColor="@drawable/week_btn_toggle"
+            android:textOn="목"
+            android:textOff="목"/>
+        <ToggleButton
+            android:id="@+id/friday"
+            android:layout_width="@dimen/week_button_size"
+            android:layout_height="@dimen/week_button_size"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:textColor="@drawable/week_btn_toggle"
+            android:textOn="금"
+            android:textOff="금"/>
+        <ToggleButton
+            android:id="@+id/saturday"
+            android:layout_width="@dimen/week_button_size"
+            android:layout_height="@dimen/week_button_size"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:textColor="@drawable/week_btn_toggle"
+            android:textOn="토"
+            android:textOff="토"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/alarm_submit"
+            android:text="등록"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="취소"
+            android:id="@+id/alarm_cancel"/>
+
+    </LinearLayout>
+
+</LinearLayout>
