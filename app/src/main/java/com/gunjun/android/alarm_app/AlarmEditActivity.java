@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
@@ -216,6 +217,7 @@ public class AlarmEditActivity extends AppCompatActivity {
 
             registerAlarm(this, alarmInfo, weeks);
 
+            realm.close();
             finish();
 
         } else if(v.getId() == R.id.alarm_cancel) {
@@ -226,24 +228,35 @@ public class AlarmEditActivity extends AppCompatActivity {
     public void registerAlarm(Context context, AlarmInfo info, boolean F) {
         AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Calendar curTime = Calendar.getInstance();
-
+        Calendar currentTime = Calendar.getInstance();
+        curTime.set(Calendar.YEAR, currentTime.get(Calendar.YEAR));
+        curTime.set(Calendar.MONTH, currentTime.get(Calendar.MONTH));
+        curTime.set(Calendar.DATE, currentTime.get(Calendar.DATE));
         curTime.set(Calendar.HOUR, info.getHour());
         curTime.set(Calendar.MINUTE, info.getMinute());
-        curTime.set(Calendar.SECOND, 0);
+        curTime.set(Calendar.SECOND, 59);
         curTime.set(Calendar.AM_PM, info.getTimeDivide());
+
+
+        if(curTime.getTimeInMillis() < currentTime.getTimeInMillis()) {
+            curTime.set(Calendar.DATE, currentTime.get(Calendar.DATE) + 1);
+            curTime.set(Calendar.SECOND, 0);
+        } else {
+            curTime.set(Calendar.SECOND, 0);
+        }
 
         Long alarmTime = curTime.getTimeInMillis();
 
         Intent intent = new Intent(context, BootReceiver.class);
         intent.putExtra("id",info.getId());
-        PendingIntent pIntent = PendingIntent.getBroadcast(context, info.getId(), intent, 0);
+        PendingIntent pIntent = PendingIntent.getBroadcast(context, info.getId(), intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         if(F) {
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, alarmTime, 24*60*60*1000, pIntent );
+            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, alarmTime, 24*60*60*1000, pIntent);
         } else {
-            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime,pIntent);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime, pIntent);
+            Log.d("ADASDFSADF", alarmTime+"");
         }
-
     }
 
 }

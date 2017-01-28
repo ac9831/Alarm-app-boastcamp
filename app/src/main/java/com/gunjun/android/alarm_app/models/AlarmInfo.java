@@ -16,7 +16,6 @@ public class AlarmInfo extends RealmObject {
     private String week;
     private int timeDivide;
     private String memo;
-    private String geo;
 
     public int getId() {
         return id;
@@ -64,14 +63,6 @@ public class AlarmInfo extends RealmObject {
 
     public void setMemo(String memo) {
         this.memo = memo;
-    }
-
-    public String getGeo() {
-        return geo;
-    }
-
-    public void setGeo(String geo) {
-        this.geo = geo;
     }
 
 }

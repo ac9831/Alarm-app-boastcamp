@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".AlarmApplication"
@@ -20,16 +21,24 @@
             </intent-filter>
         </activity>
         <activity android:name=".AlarmEditActivity" />
+        <activity android:name=".AlarmActivity" />
 
         <receiver
             android:name=".receiver.BootReceiver"
-            android:enabled="false">
+            android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
 
-        <activity android:name=".AlarmActivity"></activity>
+        <activity android:name=".AlarmDetailActivity"></activity>
+
+        <provider
+            android:name=".provider.Provider"
+            android:authorities="com.gunjun.android.alarm_app"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -16,13 +14,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            tools:text="09:00"
             android:layout_weight="0.7"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="PM"
             android:id="@+id/time_divide"
             android:layout_weight="0.5"/>
 
@@ -30,10 +26,10 @@
             android:id="@+id/txt_day_week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="40dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            tools:text="Item Number One"
             android:textSize="16dp"
-            android:layout_weight="12"/>
+            android:layout_weight="10"/>
 
         <ImageView
             android:layout_width="24dp"
@@ -55,7 +51,6 @@
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -64,7 +59,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="right"
-            android:text="Hi!"
             android:textSize="20dp"
             android:paddingRight="10dp"
             android:paddingBottom="5dp"/>

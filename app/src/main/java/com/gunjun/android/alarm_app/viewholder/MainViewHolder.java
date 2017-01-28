@@ -15,6 +15,7 @@ import com.gunjun.android.alarm_app.MainActivity;
 import com.gunjun.android.alarm_app.R;
 import com.gunjun.android.alarm_app.adapter.MainAdapter;
 import com.gunjun.android.alarm_app.models.AlarmInfo;
+import com.gunjun.android.alarm_app.receiver.BootReceiver;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +30,8 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
 
     private Realm realm;
     private MainAdapter mainAdapter;
+    private BootReceiver bootReceiver;
+    private Context context;
 
     @BindView(R.id.txt_day_week)
     public TextView dayWeek;
@@ -45,12 +48,16 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.txt_memo)
     public TextView txtMemo;
 
-    public MainViewHolder(View itemView, MainAdapter adapter) {
+    public MainViewHolder(View itemView, MainAdapter adapter, Context mContext, Realm realm) {
         super(itemView);
         mainAdapter = adapter;
-        realm = Realm.getDefaultInstance();
+        this.realm = realm;
+        if(this.realm == null) {
+            this.realm = Realm.getDefaultInstance();
+        }
         ButterKnife.bind(this, itemView);
-
+        bootReceiver = new BootReceiver();
+        context = mContext;
     }
 
 
@@ -73,7 +80,11 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
         realm.beginTransaction();
         realm.where(AlarmInfo.class).equalTo("id", Integer.parseInt(itemId.getText().toString())).findFirst().deleteFromRealm();
         realm.commitTransaction();
-        Log.d("자리",getPosition()+"");
+        Intent intent = new Intent(context, BootReceiver.class);
+        PendingIntent sender = PendingIntent.getBroadcast(context, Integer.parseInt(itemId.getText().toString()), intent, PendingIntent.FLAG_NO_CREATE);
+        if(sender != null) {
+            sender.cancel();
+        }
         mainAdapter.notifyItemRemoved(getPosition());
     }
 

@@ -106,31 +106,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void realmData() {
-
-        List<AlarmInfo> list = new ArrayList<AlarmInfo>();
-
-        for(int i=0;i<5;i++) {
-            AlarmInfo alarmInfo = new AlarmInfo();
-            alarmInfo.setId(i+1);
-            alarmInfo.setHour(i);
-            alarmInfo.setMinute(30);
-            String s = "월,화";
-            alarmInfo.setWeek(s);
-            alarmInfo.setMemo("하하하하하");
-            alarmInfo.setTimeDivide(0);
-            list.add(alarmInfo);
-        }
-
-
-        realm.beginTransaction();
-        alarmResult = realm.copyToRealmOrUpdate(list);
-        realm.commitTransaction();
-
         RealmQuery<AlarmInfo> query = realm.where(AlarmInfo.class);
         infos = query.findAll();
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new MainAdapter(infos, getApplicationContext());
+        mAdapter = new MainAdapter(infos, getApplicationContext(), realm);
         recyclerView.setAdapter(mAdapter);
 
     }
